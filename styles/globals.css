@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+
+@layer components {
+  .btn-sm {
+    @apply bg-blue-500 font-bold text-white rounded-md py-1 px-3 text-center hover:bg-blue-400 cursor-pointer transition duration-300 text-sm shadow-md hover:shadow-lg;
+  }
+  .btn-md {
+    @apply bg-blue-500 font-bold text-white rounded-md py-2 px-4 text-center hover:bg-blue-400 cursor-pointer transition duration-300 text-base shadow-md hover:shadow-lg;
+  }
+  .btn-lg {
+    @apply bg-blue-500 font-bold text-white rounded-md py-3 px-8 text-center hover:bg-blue-400 cursor-pointer transition duration-300 text-lg shadow-md hover:shadow-lg;
+  }
+  .nav-btn {
+    @apply bg-white font-bold text-gray-900 rounded py-1 px-3 text-center hover:bg-gray-900 hover:text-white cursor-pointer transition duration-300 ml-1 capitalize;
+  }
+  .selected {
+    @apply underline;
+  }
+}
+
+@tailwind utilities;
