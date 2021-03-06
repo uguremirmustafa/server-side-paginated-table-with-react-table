@@ -1,14 +1,64 @@
-import Navbar from '@components/layout/Navbar';
-import Head from 'next/head';
-import Link from 'next/link';
+import React, { useState } from 'react';
+import Table from '@components/Table/Table';
+import useSchools from '@utils/useSchools';
 
 export default function Home() {
-  const items = [1, 2, 3, 4, 5, 6, 7, 8];
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
+  const { data: schools, isLoading } = useSchools(page, perPage);
+  // console.log(schools);
+  const list = schools?.data.docs.map((i) => {
+    return {
+      col1: i.name,
+      col2: i.il,
+      col3: i.ilce,
+      col4: i.kont,
+      // col5: i.tercihEdenler.length,
+      // col6: i.yorumlar.length,
+    };
+  });
+  const data = React.useMemo(() => list, [schools]);
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: 'okul adi',
+        accessor: 'col1', // accessor is the "key" in the data
+      },
+      {
+        Header: 'il',
+        accessor: 'col2',
+      },
+      {
+        Header: 'ilce',
+        accessor: 'col3',
+      },
+      {
+        Header: 'kontenjan',
+        accessor: 'col4',
+      },
+      // {
+      //   Header: 'tercih eden',
+      //   accessor: 'col5',
+      // },
+      // {
+      //   Header: 'yorum sayisi',
+      //   accessor: 'col6',
+      // },
+    ],
+    []
+  );
+  if (isLoading) return <div>loading...</div>;
   return (
-    <div>
-      <Link scroll={true} href="/profile">
-        profile
-      </Link>
+    <div className="p-4 bg-white my-4 rounded shadow-xl grid">
+      <Table
+        data={data}
+        columns={columns}
+        setPage={setPage}
+        setPerPage={setPerPage}
+        currentpage={page}
+        perPage={perPage}
+        totalPage={schools?.data.totalPages}
+      />
     </div>
   );
 }

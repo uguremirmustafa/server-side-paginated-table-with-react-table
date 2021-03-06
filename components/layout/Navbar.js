@@ -12,7 +12,7 @@ function Navbar() {
   ];
   const normalRoutes = [
     { route: '/', label: 'Home' },
-    { route: '/blog', label: 'Blog' },
+    { route: '/dashboard', label: 'Dashboard' },
   ];
 
   const protectedLinks = protectedRoutes.map((i) => (
