@@ -6,15 +6,12 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
   const { data: schools, isLoading } = useSchools(page, perPage);
-  // console.log(schools);
   const list = schools?.data.docs.map((i) => {
     return {
       col1: i.name,
       col2: i.il,
       col3: i.ilce,
       col4: i.kont,
-      // col5: i.tercihEdenler.length,
-      // col6: i.yorumlar.length,
     };
   });
   const data = React.useMemo(() => list, [schools]);
@@ -36,14 +33,6 @@ export default function Home() {
         Header: 'kontenjan',
         accessor: 'col4',
       },
-      // {
-      //   Header: 'tercih eden',
-      //   accessor: 'col5',
-      // },
-      // {
-      //   Header: 'yorum sayisi',
-      //   accessor: 'col6',
-      // },
     ],
     []
   );
